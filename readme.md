@@ -8,6 +8,10 @@ Corona SDK (http://www.coronalabs.com) lacks a ORM-like to manage SQLite databas
 
 ** For that I make use of 30log library: https://github.com/Yonaba/30log
 
+# Instalation
+
+Just copy libs folder to your project and import lib.models to every class you create.
+
 # Usage
 
 Create a class that extends Model (our Active Record Pattern). Model is a base class which implements Save, Delete, Find all, Update and support for relationships (at the time one to one and one to many.)
@@ -15,6 +19,9 @@ Create a class that extends Model (our Active Record Pattern). Model is a base c
 Example:
 
 ```lua
+
+require("lib.models")
+
 local Person = Model:extend("Person", { columns = {
     age = {}, 
     surname = { notNull=true }}}
