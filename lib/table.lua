@@ -16,15 +16,9 @@
   * Gerar SQL order
   * Gerar SQL group
  ]]
-DEBUG = false
-local class
-if DEBUG == false then
-    class = require("lib.external.30log")
-    require("lib.util.table_util")
-else
-    class = require("30log")
-    require("table_util")
-end
+
+local class = require("lib.external.30log")
+require("lib.util.table_util")
 
 --[[
 -- Generates SQLs queries as strings to be used on SQLite
@@ -211,12 +205,7 @@ function Table:_generateSQLSelect(model)
                 foreignKeySQL = foreignKeySQL..foreignTable.." as t"..tableCount.." ON t1."..foreignKey.."_id = t"..tableCount..".rowid"
                 -- TODO: ao recuperar do servidor, então construir para o JOIN
                     -- "SELECT t1.rowid as Casa_rowid, t1.nome as Casa_nome,t1.idade as Casa_idade, t2.sobrenome as Pessoa_sobrenome, t2.cpf as Pessoa_cpf FROM Casa as t1 LEFT OUTER JOIN Pessoa as t2 ON t1.pessoa_id = t2.rowid"
-                local myClass
-                if DEBUG == false then
-                    myClass  = require("models."..foreignTable)
-                else
-                    myClass  = require(foreignTable)
-                end
+                local myClass = require("models."..foreignTable)
 
                 -- TODO: do validations on foreigntable to check if it contains columns, name and such.
 

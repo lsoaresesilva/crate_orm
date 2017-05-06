@@ -15,7 +15,6 @@ for row in db:nrows("SELECT * FROM test") do
         website = row.website
     }
 end]]
-DEBUG = false
 class = require("lib.external.30log")
 require("lib.table")
 require("lib.util.table_util")
@@ -165,26 +164,23 @@ function Model:_createTableSQL(model)
     local result = false
     if model.isTableCreated == nil or model.isTableCreated == false then
 
-      if model.columns == nil and model.name == nil then
+        if model.columns == nil and model.name == nil then
           error( "You should not call this method directly.")
-      end
+        end
 
-      local sql = Table:_generateSQL(model)
+        local sql = Table:_generateSQL(model)
       
-      if DEBUG == false then
+      
         local sqlStatus = db:exec( sql )
-        
+
         if sqlStatus == 0 then
             -- should not create a table everytime a new instance is created
             local myClass = require("models."..model.name)
             myClass.isTableCreated = true
             return true
         end
-      else
-        result = true
-      end
-
     end
+    
     self:_closeDatabase(db)
     return result
 end

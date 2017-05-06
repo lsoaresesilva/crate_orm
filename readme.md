@@ -60,7 +60,7 @@ end
 -- Creating a Person instance.
 local aPerson = Person({age=30, surname="Soares"})
 aPerson:save() -- saves on database
-aPerson = 28
+aPerson.age = 28
 aPerson:save() -- updates
 local persons = Person:findAll() -- Select * From Person. Returns a table with results.
 if #persons > 0 then
@@ -92,7 +92,7 @@ local animals = Animal:findAll()
 print(#animals)
 if #animals > 0 then
     for i=1, #animals do
-        print(animals[i].aPerson.age) -- should print 28
+        print(animals[i].animalOwner.age) -- should print 28
     end
 end
 ```
@@ -105,3 +105,7 @@ MIT.
 
 Leonardo Soares e Silva
 lsoaresesilva@gmail.com
+
+# TODO
+
+* Transactions
